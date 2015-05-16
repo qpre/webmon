@@ -1,4 +1,4 @@
-import Sprite from ('../models/sprite');
+import Sprite from '../models/sprite';
 
 export default class Map {
   constructor (data) {

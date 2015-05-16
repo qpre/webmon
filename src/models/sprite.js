@@ -1,3 +1,5 @@
+import Frame from './frame'
+
 export default class Sprite {
   constructor (spriteInfos, frames) {
     this.src    = spriteInfos.src;
@@ -14,27 +16,17 @@ export default class Sprite {
   }
 
   genFrames (frames) {
-    for frame in frames {
-      self = this;
+    frames.map( (frame) => {
+      let frm = new Frame(
+        this.src,
+        this.baseWidth * frame.width,
+        this.baseHeight * frame.height,
+        (frame.x + this.spacing) * this.baseWidth,
+        (frame.y + this.spacing) * this.baseHeight
+      );
 
-      this.frames.push({
-        id: frame.id,
-
-        width:  self.baseWidth * frame.width,
-        height: self.baseHeight * frame.height,
-
-        offsetX: (frame.x + self.spacing) * self.baseWidth,
-        offsetY: (frame.y + self.spacing) * self.baseHeight,
-
-        draw: function (ctx) {
-          ctx.drawImage(self.src,
-                  x, y,
-                  this.size[0], this.size[1],
-                  0, 0,
-                  this.size[0], this.size[1]);
-        }
-      });
-    }
+      this.frames.push(frm);
+    });
   }
 
   loadImage (src) {
