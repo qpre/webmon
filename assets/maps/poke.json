@@ -1,0 +1,30 @@
+{
+  'map': {
+    'array': [
+      0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0
+    ],
+
+    'tilesOptions': {
+      src: 'assets/sprites/maps/poke.png',
+      width:  16,
+      height: 16
+    },
+
+    'tiles':[
+      {
+        id:     0,
+        human:  'desert',
+        width:  1,
+        height: 1,
+        x:      1,
+        y:      1
+      }
+    ]
+
+  }
+}
