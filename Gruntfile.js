@@ -15,6 +15,11 @@ module.exports = function(grunt) {
     },
 
     'copy': {
+      'index': {
+        src: ['src/index.html'],
+        dest: 'dist/'
+      },
+
       'assets': {
         expand: true,
         src: ['assets/**/*'],
@@ -55,11 +60,13 @@ module.exports = function(grunt) {
 
       livereload: {
         options: {
-          middleware: function (connect) {
-            return [lrSnippet, mountFolder(connect, 'dist')];
-          }
+          open: true,
+          base: [
+            'dist',
+            'src'
+          ]
         }
-      }
+      },
     },
 
     'open': {
