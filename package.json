@@ -1,0 +1,30 @@
+{
+  "name": "webmon",
+  "version": "1.0.0",
+  "description": "A web based 2D RPG",
+  "main": "webmon.js",
+  "dependencies": {
+    "grunt-babel": "^5.0.0"
+  },
+  "devDependencies": {
+    "grunt-babel": "^5.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/qpre/webmon.git"
+  },
+  "keywords": [
+    "2d",
+    "game",
+    "rpg"
+  ],
+  "author": "Quentin PRE",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/qpre/webmon/issues"
+  },
+  "homepage": "https://github.com/qpre/webmon"
+}
