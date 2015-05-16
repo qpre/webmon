@@ -75,6 +75,12 @@ module.exports = function(grunt) {
       }
     },
 
+    'concat': {
+      dist: {
+        src: ['src/**/*.js'],
+        dest: 'dist/webmon.es6.js',
+      },
+    },
 
     'babel': {
       options: {
@@ -82,14 +88,14 @@ module.exports = function(grunt) {
       },
       dist: {
         files: {
-          'dist/webmon.js': 'src/**/*.js'
+          'dist/webmon.js': 'dist/webmon.es6.js'
         }
       }
     }
   });
 
   grunt.registerTask('dist', function () {
-    return grunt.task.run(['babel', 'copy']);
+    return grunt.task.run(['concat', 'babel', 'copy']);
   });
 
   grunt.registerTask('default', ['dist']);
