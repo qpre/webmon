@@ -42,7 +42,7 @@ module.exports = function(grunt) {
       },
       js: {
         files: ['src/**/*.js'],
-        tasks: ['babel']
+        tasks: ['browserify']
       },
       livereload: {
         options: {
@@ -75,27 +75,20 @@ module.exports = function(grunt) {
       }
     },
 
-    'concat': {
+    'browserify': {
       dist: {
-        src: ['src/**/*.js'],
-        dest: 'dist/webmon.es6.js',
-      },
-    },
-
-    'babel': {
-      options: {
-        sourceMap: true
-      },
-      dist: {
+        options: {
+          transform: [["babelify", { "stage": 0 }]]
+        },
         files: {
-          'dist/webmon.js': 'dist/webmon.es6.js'
+          'dist/webmon.js': 'src/main.js'
         }
       }
     }
   });
 
   grunt.registerTask('dist', function () {
-    return grunt.task.run(['concat', 'babel', 'copy']);
+    return grunt.task.run(['browserify', 'copy']);
   });
 
   grunt.registerTask('default', ['dist']);
