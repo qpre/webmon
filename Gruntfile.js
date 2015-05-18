@@ -23,7 +23,7 @@ module.exports = function(grunt) {
       'assets': {
         expand: true,
         src: ['assets/**/*'],
-        dest: 'dist/assets',
+        dest: 'dist/',
         filter: 'isFile'
       },
 
@@ -84,11 +84,20 @@ module.exports = function(grunt) {
           'dist/webmon.js': 'src/main.js'
         }
       }
+    },
+
+    'jscs': {
+      src: "src/**/*.js",
+      options: {
+        config: ".jscsrc",
+        esnext: true, // If you use ES6 http://jscs.info/overview.html#esnext
+        verbose: true // If you need output with rule names http://jscs.info/overview.html#verbose
+      }
     }
   });
 
   grunt.registerTask('dist', function () {
-    return grunt.task.run(['browserify', 'copy']);
+    return grunt.task.run(['jscs', 'browserify', 'copy']);
   });
 
   grunt.registerTask('default', ['dist']);
