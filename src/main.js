@@ -1,1 +1,7 @@
-import Map from './models/map.js';
+import Game from './game.js';
+
+let webMon = new Game();
+
+webMon.start();
+
+console.log('WebMon just started !');

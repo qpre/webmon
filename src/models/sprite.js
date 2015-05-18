@@ -1,7 +1,7 @@
-import Frame from './frame'
+import Frame from '../graphics2d/frame'
 
 export default class Sprite {
-  constructor (spriteInfos, frames) {
+  constructor (spriteInfos, frames, onReady) {
     this.src    = spriteInfos.src;
     this.sheet  = new Image();
     this.frames = [];
@@ -11,29 +11,28 @@ export default class Sprite {
 
     this.spacing = spriteInfos.spacing || 0;
 
-    this.loadImage(spriteInfos.src);
-    this.genFrames(frames);
+    this.loadImage(spriteInfos.src, () => {
+      this.genFrames(frames);
+      onReady();
+    });
   }
 
   genFrames (frames) {
-    frames.map( (frame) => {
+    frames.map((frame) => {
       let frm = new Frame(
-        this.src,
+        this.sheet,
         this.baseWidth * frame.width,
         this.baseHeight * frame.height,
-        (frame.x + this.spacing) * this.baseWidth,
-        (frame.y + this.spacing) * this.baseHeight
+        this.spacing + (frame.x * (this.baseWidth + this.spacing)),
+        this.spacing + (frame.y * (this.baseHeight + this.spacing))
       );
 
       this.frames.push(frm);
     });
   }
 
-  loadImage (src) {
-    this.sheet.onload = () => {
-      console.log(`${src} loaded !`);
-    }
-
+  loadImage (src, onReady) {
+    this.sheet.onload = onReady;
     this.sheet.src = src;
   }
 };
