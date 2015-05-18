@@ -1,0 +1,9 @@
+{
+  "maps": [
+    "/assets/maps/poke.json"
+  ],
+  "sprites": [
+    "/assets/sprites/maps/poke.png",
+    "/assets/sprites/characters/poke.png"
+  ]
+}
