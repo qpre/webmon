@@ -1,6 +1,8 @@
 import Preloader from './network/preloader';
 import Scene from './graphics2d/scene';
 import Map from './models/map';
+import Player from './models/player';
+import Keyboard from './inputs/keyboard'
 
 export default class Game {
   constructor (id) {
@@ -17,11 +19,11 @@ export default class Game {
       this.body.appendChild(domElement);
     }
 
-    // fitting screen
-    domElement.width  = this.window.innerWidth;
-    domElement.height = this.window.innerHeight;
-
     this.domElement = domElement;
+
+    // fitting screen
+    window.addEventListener('resize', () => { this.resize(); });
+    this.resize();
   }
 
   // preselecting element for ease of use and avoiding useless selections
@@ -48,6 +50,7 @@ export default class Game {
     let preloader;
     let onFileReady;
     let onFilesReady;
+
     const files = this.manifest.maps.concat(this.manifest.sprites);
 
     onFileReady = (fileName, req) => {
@@ -59,18 +62,33 @@ export default class Game {
       this.launch();
     };
 
-    preloader = new Preloader (files, onFileReady, onFileReady);
+    preloader = new Preloader (files, onFileReady, onFilesReady);
     preloader.load();
+  }
+
+  resize () {
+    this.domElement.width  = this.window.innerWidth;
+    this.domElement.height = this.window.innerHeight;
   }
 
   launch () {
     const mapData = JSON.parse(this.files['/assets/maps/poke.json']).map;
+
+    // initiating 2D Scene
+    this.keyboard = new Keyboard();
     this.scene = new Scene(this.domElement);
 
+    // Prepping basic elements
     this.map = new Map(mapData);
 
-    this.scene.add(this.map);
+    // init player
+    this.player = new Player(mapData, 10, 10);
 
+    // Adding elements
+    this.scene.add(this.map);
+    this.scene.add(this.player.view);
+
+    // Starting scene
     this.scene.start();
   }
 

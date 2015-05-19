@@ -129,6 +129,24 @@
         "x":      4,
         "y":      1
       }
+    ],
+
+    "charactersOptions": {
+      "src":      "assets/sprites/characters/poke.png",
+      "spacing":  1,
+      "width":    16,
+      "height":   20
+    },
+
+    "characters": [
+      {
+        "id":     0,
+        "human":  "mom-front",
+        "width":  1,
+        "height": 1,
+        "x":      0,
+        "y":      0
+      }
     ]
 
   }
